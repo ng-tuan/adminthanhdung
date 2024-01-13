@@ -1,4 +1,4 @@
-import { Button, Nav, NavItem } from "reactstrap";
+import { Button, Nav, NavItem, Collapse  } from "reactstrap";
 import Logo from "./Logo";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,29 +10,30 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
-    title: "Order",
-    href: "/order",
+    title: "Quản lý sản phẩm",
+    href: "/product",
     icon: "bi bi-people",
   },
   {
-    title: "Process",
-    href: "/process",
+    title: "Quản lý nhà yến",
+    href: "/house",
     icon: "bi bi-people",
   },
   {
-    title: "Submit",
-    href: "/submit",
+    title: "Quản lý lô sản xuất",
+    href: "/dashboard",
     icon: "bi bi-people",
   },
-  {
-    title: "Done",
-    href: "/done",
-    icon: "bi bi-people",
-  },
+  // {
+  //   title: "Done",
+  //   href: "/done",
+  //   icon: "bi bi-people",
+  // },
 ];
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("");
+  const [activeSubMenu, setActiveSubMenu] = useState("");
 
   const handleMenuItemClick = (href) => {
     setActiveItem(href);
@@ -50,7 +51,9 @@ const Sidebar = () => {
   useEffect(() => {
     setActiveItem("");
   }, [location.pathname]);
-  
+  const toggleSubMenu = (href) => {
+    setActiveItem((prev) => (prev === href ? "" : href));
+  };
   return (
     <div className="p-3">
       <div className="d-flex align-items-center">
@@ -84,6 +87,7 @@ const Sidebar = () => {
           ))}
         </Nav>
       </div>
+    
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "./popup.scss";
 
-const Popup = ({ imageURL, onClose }) => {
+const Popup = ({onClose}) => {
   return (
     <div className="popup-form-apply popup-business active">
       <div className="business-container">
@@ -75,98 +75,6 @@ const Popup = ({ imageURL, onClose }) => {
             </svg>
           </a>
         </div>
-        {/* <div className="popup-footer">
-          <h2>Need help?</h2>
-          <div className="help-contact">
-            <ul>
-              <li>
-                <a href="tel:+84902466090">
-                  <span className="icon">
-                    <img
-                      src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/phone.svg"
-                      alt="phone"
-                      data-lazy-src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/phone.svg"
-                      data-ll-status="loaded"
-                      className="entered lazyloaded"
-                    />
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  target="_blank"
-                  href="https://m.me/spacevisaservice"
-                  rel="noreferrer"
-                >
-                  <span className="icon">
-                    <span className="icon">
-                      <img
-                        src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/messenger.svg"
-                        alt="messenger"
-                        data-lazy-src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/messenger.svg"
-                        data-ll-status="loaded"
-                        className="entered lazyloaded"
-                      />
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  target="_blank"
-                  href="viber://chat?number=0902466090"
-                  rel="noreferrer"
-                >
-                  <span className="icon">
-                    <span className="icon">
-                      <img
-                        src="https://api.annk.info/wp-content/uploads/2023/11/viber-svgrepo-com-_1_-e1700826554835.webp"
-                        alt="viber"
-                        data-lazy-src="https://api.annk.info/wp-content/uploads/2023/11/viber-svgrepo-com-_1_-e1700826554835.webp"
-                        data-ll-status="loaded"
-                        className="entered lazyloaded"
-                      />
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  target="_blank"
-                  href="https://zalo.me/0902466090"
-                  rel="noreferrer"
-                >
-                  <span className="icon">
-                    <span className="icon">
-                      <img
-                        src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/zalo.svg"
-                        alt="zalo"
-                        data-lazy-src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/zalo.svg"
-                        data-ll-status="loaded"
-                        className="entered lazyloaded"
-                      />
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:sp.spacevisa@gmail.com">
-                  <span className="icon">
-                    <span className="icon">
-                      <img
-                        src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/google_gmail.svg"
-                        alt="google_gmail"
-                        data-lazy-src="https://apply.vietnam-visa.com/wp-content/themes/apply_vietnam_visa_v1.1//assets/images/icons/google_gmail.svg"
-                        data-ll-status="loaded"
-                        className="entered lazyloaded"
-                      />
-                    </span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </div>
     </div>
   );

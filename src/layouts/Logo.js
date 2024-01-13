@@ -7,7 +7,7 @@ const Logo = () => {
     <Link to="/" className="text-decoration-none d-flex align-items-center">
       <img src={logo} style={{ width: "31px", height: "31px" }} />
       <span className="mx-2" style={{ fontSize: "22px", fontWeight: "700" }}>
-        E-VISA
+        YEN SAO THANH DUNG
       </span>
     </Link>
   );

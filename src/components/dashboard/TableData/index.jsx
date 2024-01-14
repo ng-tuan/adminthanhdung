@@ -6,7 +6,7 @@ import { Button } from "reactstrap";
 export default function TableData() {
   const [activeProducts, setActiveProducts] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
   const [totalRecords, setTotalRecords] = useState(0);
   const nav = useNavigate();
 

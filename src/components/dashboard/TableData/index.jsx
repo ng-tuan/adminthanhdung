@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
@@ -8,8 +7,8 @@ export default function TableData() {
   const [activeProducts, setActiveProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [totalRows, setTotalRows] = useState(0);
-  const nav = useNavigate()
+  const [totalRecords, setTotalRecords] = useState(0);
+  const nav = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -17,44 +16,27 @@ export default function TableData() {
         `https://traceability.yensaocaocapthanhdung.com.vn/api/trace?page=${page}&limit=${limit}`
       );
       const data = await response.json();
-      const dataReverse = data.reverse()
 
-      setActiveProducts(dataReverse);
-      setTotalRows(data.length);
+      setActiveProducts(data.data);
+      setTotalRecords(data.totalRecords);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  // const paginationItems = [];
-  // for (let i = 1; i <= Math.ceil(10 / limit); i++) {
-  //   paginationItems.push(
-  //     <Pagination.Item
-  //       key={i}
-  //       active={i === page}
-  //       onClick={() => handlePageChange(i)}
-  //     >
-  //       {i}
-  //     </Pagination.Item>
-  //   );
-  // }
-
-  console.log(totalRows);
   useEffect(() => {
     fetchData();
   }, [page, limit]);
 
-  console.log(activeProducts);
-
   const handlePageChange = (newPage) => {
     setPage(newPage);
-    fetchData()
+    fetchData();
   };
 
   const handleLimitChange = (newLimit) => {
     setLimit(newLimit);
     setPage(1); // Reset page when changing the limit
-    fetchData()
+    fetchData();
   };
 
   const columns = [
@@ -64,9 +46,7 @@ export default function TableData() {
       selector: "houseCode",
       sortable: true,
       cell: (row) => (
-        <Link to={`/details-house/${row.houseCode}`}>
-          {row.productionLot}
-        </Link>
+        <Link to={`/details-house/${row.houseCode}`}>{row.productionLot}</Link>
       ),
     },
     { name: "Record Retrieval", selector: "recordRetrieval", sortable: true },
@@ -94,8 +74,21 @@ export default function TableData() {
   ];
 
   const addLot = () => {
-    nav('add')
-  }
+    nav("add");
+  };
+
+  const handleSort = async (column, sortDirection) => {
+    try {
+      const response = await fetch(
+        `https://traceability.yensaocaocapthanhdung.com.vn/api/trace?page=${page}&limit=${limit}&sortBy=${column.selector}&order=${sortDirection}`
+      );
+      const data = await response.json();
+
+      setActiveProducts(data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <>
@@ -106,15 +99,16 @@ export default function TableData() {
         pagination
         paginationPerPage={limit}
         paginationRowsPerPageOptions={[10, 20, 30]}
-        paginationTotalRows={100}
+        paginationTotalRows={totalRecords}
         paginationServer
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           handleLimitChange(currentRowsPerPage);
           handlePageChange(currentPage);
         }}
         onChangePage={(currentPage) => handlePageChange(currentPage)}
+        onSort={handleSort}
       />
-       <Button onClick={addLot}>Thêm lô hàng</Button>
+      <Button onClick={addLot}>Thêm lô hàng</Button>
     </>
   );
 }
